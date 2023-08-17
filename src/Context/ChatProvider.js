@@ -6,14 +6,9 @@ const ChatProvider = ({ children }) => {
   const [selectedChat, setSelectedChat] = useState();
   const [chats, setChats] = useState([]);
   const [notifications, setNotifications] = useState([]);
-  useEffect(() => {
-    let userInfo;
-    if (localStorage.getItem("userInfo") !== undefined) {
-      userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    }
-    console.log(userInfo, "userinfo");
-    if (userInfo) setUser(userInfo);
-  }, [user?._id]);
+  const [isThreadCreated,setisThreadCreated] = useState(null)
+  const [threadId,setThreadId] = useState("")
+
   return (
     <ChatContext.Provider
       value={{
@@ -25,6 +20,10 @@ const ChatProvider = ({ children }) => {
         selectedChat,
         notifications,
         setNotifications,
+        setisThreadCreated,
+        isThreadCreated,
+        threadId,
+        setThreadId
       }}
     >
       {children}

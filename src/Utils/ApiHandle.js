@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { toast } from "react-toastify";
 
-const ApiHandle = async (endPoint, payload, method, handleLoader, toast) => {
+const ApiHandle = async (endPoint, payload, method, handleLoader, toast,params) => {
   if (typeof handleLoader === "function") handleLoader();
 
   let baseURL = `${process.env.REACT_APP_BASE_API_URL}`;
@@ -23,6 +23,7 @@ const ApiHandle = async (endPoint, payload, method, handleLoader, toast) => {
       method,
       url: `${baseURL}${endPoint}`,
       data: payload,
+      params:params
     });
     return {
       statusCode: response?.status,

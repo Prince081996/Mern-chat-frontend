@@ -42,7 +42,7 @@ const HomePage = () => {
           color="black"
           textAlign="center"
         >
-          Talk-To-AnyBody
+         Chit Chat
         </Text>
       </Box>
       <Box

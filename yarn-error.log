@@ -1,0 +1,77 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\princ\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;%NVM_HOME%;%NVM_SYMLINK%;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\princ\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\princ\AppData\Local\Programs\Python\Python310\;C:\Users\princ\AppData\Local\Microsoft\WindowsApps;C:\Users\princ\AppData\Roaming\npm;C:\Users\princ\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\MongoDB\Server\5.0\bin;C:\Users\princ\.dotnet\tools;C:\Users\princ\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.14.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:71:26)
+
+npm manifest: 
+  {
+    "name": "talk",
+    "version": "0.1.0",
+    "dependencies": {
+      "@chakra-ui/icons": "^2.0.11",
+      "@chakra-ui/react": "^2.3.5",
+      "@emotion/react": "^11.10.4",
+      "@emotion/styled": "^11.10.4",
+      "@jitsi/react-sdk": "^1.1.0",
+      "@testing-library/jest-dom": "^5.16.5",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^13.5.0",
+      "axios": "^0.27.2",
+      "framer-motion": "^7.5.3",
+      "react": "^16.2.0",
+      "react-bootstrap-icons": "^1.9.1",
+      "react-dom": "^16.2.0",
+      "react-lottie": "^1.2.3",
+      "react-notification-badge": "^1.5.1",
+      "react-router-dom": "^5.3.4",
+      "react-scripts": "5.0.1",
+      "react-scrollable-feed": "^1.3.1",
+      "react-toastify": "^9.0.8",
+      "socket.io-client": "^4.5.2",
+      "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

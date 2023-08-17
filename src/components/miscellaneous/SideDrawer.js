@@ -32,7 +32,7 @@ import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
 import { getSender } from "../config/ChatLogics";
 import ApiHandle from "../../Utils/ApiHandle";
-import { ACESSS_CHAT, SEARCH_USER } from "../../Utils/ApiConstants";
+import { ACESSS_CHAT, GET_THREAD, SEARCH_USER } from "../../Utils/ApiConstants";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -47,6 +47,7 @@ const SideDrawer = () => {
     setChats,
     notifications,
     setNotifications,
+    setisThreadCreated
   } = ChatState();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -92,6 +93,25 @@ const SideDrawer = () => {
       toast
     );
     if (resp.statusCode === 200) {
+      const sender_id = resp?.responsePayload?.users.find((u) => u._id !== userId)
+      console.log(sender_id,"senders")
+      let params = {
+        sender_id:sender_id._id,
+        receiver_id:userId
+      }
+      const threadResp = await ApiHandle(
+        GET_THREAD,
+       {},
+        "GET",
+        handleLoader,
+        toast,
+        params
+      )
+      if(threadResp.responsePayload === 200){
+        console.log(threadResp.responsePayload?.is_thread_created)
+        setisThreadCreated(threadResp.responsePayload?.is_thread_created)
+      }
+      console.log(threadResp,"threadresp")
       if (!chats.find((c) => c._id === resp.responsePayload._id)) {
         setChats([resp.responsePayload, ...chats]);
       }
@@ -118,7 +138,7 @@ const SideDrawer = () => {
           </Text>
         </Button>
         <Text fontSize="2xl" fontFamily="work sans">
-          Talk-To-AnyBody
+        Chit Chat
         </Text>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Menu>

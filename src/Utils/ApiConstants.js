@@ -7,3 +7,4 @@ export const SEARCH_USER = "/api/user";
 export const CREATE_GROUP_CHAT = "/api/chat/group";
 export const ACESSS_CHAT = "/api/chat";
 export const ADD_USER_IN_GROUP = "/api/chat/groupadd";
+export const GET_THREAD = "/api/message/getThread"

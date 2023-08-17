@@ -13,21 +13,39 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { ViewIcon } from "@chakra-ui/icons";
+import { ViewIcon,PhoneIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../Context/ChatProvider";
+import {useHistory} from "react-router-dom"
 
-const ProfileModal = ({ user, children }) => {
+const ProfileModal = ({socket, user, children,loggedInUser }) => {
+  const {selectedChat} = ChatState()
+  const history = useHistory()
+  let payload = {
+    loggedInUser,
+    selectedChat
+  }
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
+                      <IconButton
+          display={{ base: "flex" }}
+          icon={<PhoneIcon />}
+          onClick={() => { 
+          socket.emit("calling",payload)
+            history.push("/call")
+          }
+          }
+        />
       {children ? (
         <span onClick={onOpen}>{children}</span>
       ) : (
+        <div style={{display:"flex"}}>
         <IconButton
           display={{ base: "flex" }}
           icon={<ViewIcon />}
           onClick={onOpen}
         />
+        </div>
       )}
 
       <Modal size="lg" isOpen={isOpen} onClose={onClose} isCentered>

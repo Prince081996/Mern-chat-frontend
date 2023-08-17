@@ -23,7 +23,7 @@ import ApiHandle from "../Utils/ApiHandle";
 import { FETCH_MESSAGES, SEND_MESSAGE } from "../Utils/ApiConstants";
 // import { m } from "framer-motion";
 
-const ENDPOINT = "https://mern-talk-to-anybody.herokuapp.com/";
+const ENDPOINT = process.env.REACT_APP_BASE_API_URL;
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -33,6 +33,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     setSelectedChat,
     notifications,
     setNotifications,
+    setisThreadCreated,
+    isThreadCreated,
+    threadId,
   } = ChatState();
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState();
@@ -73,7 +76,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     selectedChatCompare = selectedChat;
   }, [selectedChat]);
 
-  useEffect(() => {
+  // useEffect(() => {
     if (user) {
       socket = io(ENDPOINT);
       socket.emit("setup", user);
@@ -98,11 +101,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           }
           //give notification
         } else {
-          setMessages([...messages, newMessageReceived]);
+          console.log(messages,"messages")
+            setMessages([...messages, newMessageReceived]);
+          // }
+
         }
       });
     }
-  });
+  // });
 
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
@@ -115,6 +121,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       let payload = {
         content: newMessage,
         chatId: selectedChat._id,
+        is_thread_created:isThreadCreated,
+        thread_id:threadId
       };
       socket.emit("stop typing", _user);
       setNewMessage("");
@@ -199,7 +207,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     iframeRef.style.height = "400px";
                   }}
                 /> */}
-                <ProfileModal user={getSenderFull(user, selectedChat.users)} />
+                <ProfileModal loggedInUser={user} socket={socket} user={getSenderFull(user, selectedChat.users)} />
               </>
             ) : (
               <>

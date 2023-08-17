@@ -13,9 +13,18 @@ import { FETCH_CHAT } from "../Utils/ApiConstants";
 const MyChats = ({ fetchAgain }) => {
   const [loggedUser, setLoggedUser] = useState();
   const [loading, setLoading] = useState(false);
-  const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
+  const { selectedChat, setSelectedChat, user, chats, setChats,setUser } = ChatState();
 
   const toast = useToast();
+
+  useEffect(() => {
+    let userInfo;
+    if (localStorage.getItem("userInfo") !== undefined) {
+      userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    }
+    console.log(userInfo, "userinfo");
+    if (userInfo) setUser(userInfo);
+  }, [user?._id]);
 
   const handleLoader = () => {
     setLoading((prev) => !prev);
